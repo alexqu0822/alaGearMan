@@ -1481,6 +1481,14 @@ function func.initUI()
 				button:SetClampedToScreen(true);
 				button:RegisterForDrag("LeftButton");
 				button:Show();
+				local glow_hover = button:CreateTexture(nil, "OVERLAY");
+				glow_hover:SetTexture(texture_glow);
+				glow_hover:SetTexCoord(unpack(texture_glow_coord));
+				glow_hover:SetVertexColor(1.0, 1.0, 1.0, 0.5);
+				glow_hover:SetAllPoints();
+				glow_hover:SetBlendMode("ADD");
+				glow_hover:Hide();
+				button.glow_hover = glow_hover;
 				button:SetScript("OnEnter", function(self)
 					GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT");
 					local index = self.id;
@@ -1494,8 +1502,12 @@ function func.initUI()
 					end
 					GameTooltip:AddLine(L["CTRL-DRAG-TO-MOVE"], 1.0, 1.0, 1.0);
 					GameTooltip:Show();
+					glow_hover:Show();
 				end);
-				button:SetScript("OnLeave", func.OnLeave_Info);
+				button:SetScript("OnLeave", function(self)
+					func.OnLeave_Info(self);
+					glow_hover:Hide();
+				end);
 				button:SetScript("OnDragStart", function(self)
 					if IsControlKeyDown() then
 						pos_on_char = false;
@@ -1561,13 +1573,13 @@ function func.initUI()
 						title:SetText(text);
 						title:SetTextColor(1.0, 1.0, 1.0);
 						icon:SetTexture(texture);
-						icon:SetVertexColor(1.0, 1.0, 1.0, 1.0);
+						icon:SetVertexColor(1.0, 1.0, 1.0, 0.66);
 						-- icon:Show();
 						title:Show();
 					elseif alaGearManSV.quickStyle == 'T' then
 						-- title:SetTextColor(1.0, 1.0, 1.0);
 						icon:SetTexture(texture);
-						icon:SetVertexColor(1.0, 1.0, 1.0, 1.0);
+						icon:SetVertexColor(1.0, 1.0, 1.0, 0.75);
 						-- icon:Show();
 						title:Hide();
 					elseif alaGearManSV.quickStyle == 'C' then
