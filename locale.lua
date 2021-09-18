@@ -42,6 +42,7 @@ if LOCALE == 'zhCN' then
 	L["IN_BAG"] = "在背包中"
 	L["CURRENT_OUTFIT"] = "当前装备中";
 	L["SHOULD_TAKE_OFF"] = "应脱下";
+	L["UP_TO_120_MACROS"] = "当前帐号有超过|cff00ff00120|r个宏，[|cffff7f00alaGearMan|r]不会创建装备切换宏(不影响插件功能)。";
 
 	L.slot = {
 		[0] = "子弹",
@@ -111,6 +112,7 @@ elseif LOCALE == 'zhTW' then
 	L["IN_BAG"] = "在背包中"
 	L["CURRENT_OUTFIT"] = "當前裝備中";
 	L["SHOULD_TAKE_OFF"] = "應脫下";
+	L["UP_TO_120_MACROS"] = "當前賬號有超過|cff00ff00120|r個宏，[|cffff7f00alaGearMan|r]不會創建裝備切換宏(不影響插件功能)。";
 
 	L.slot = {
 		[0] = "子彈",
@@ -180,6 +182,7 @@ elseif LOCALE == "ruRU" then
 	L["IN_BAG"] = "in bag"
 	L["CURRENT_OUTFIT"] = "Current Equiped";
 	L["SHOULD_TAKE_OFF"] = "Should take off";
+	L["UP_TO_120_MACROS"] = "There are more than |cff00ff00120|r macors.[|cffff7f00alaGearMan|r] won't create macro of set switch.";
 
 	L.slot = {
 		[0] = "Ammo",
@@ -249,6 +252,7 @@ elseif LOCALE == "koKR" then
 	L["IN_BAG"] = "|cff00ff00-가방에|r"
 	L["CURRENT_OUTFIT"] = "착용중";
 	L["SHOULD_TAKE_OFF"] = "|cff00ff00_|r|cffff00cc장비(방패)없음|r";
+	L["UP_TO_120_MACROS"] = "There are more than |cff00ff00120|r macors.[|cffff7f00alaGearMan|r] won't create macro of set switch.";
 
 	L.slot = {
 		[0] = "투사체",
@@ -318,6 +322,7 @@ else
 	L["IN_BAG"] = "in bag"
 	L["CURRENT_OUTFIT"] = "Current Equiped";
 	L["SHOULD_TAKE_OFF"] = "Should take off";
+	L["UP_TO_120_MACROS"] = "There are more than |cff00ff00120|r macors.[|cffff7f00alaGearMan|r] won't create macro of set switch.";
 
 	L.slot = {
 		[0] = "Ammo",

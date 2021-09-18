@@ -1,4 +1,4 @@
-## Interface: 20502
+## Interface: 11307
 ## Title: alaGearMan
 ## Title-zhCN: |cff880303[网易有爱]|r 一键换装
 ## Title-zhTW: |cff880303[网易有爱]|r 一键换装
@@ -12,7 +12,7 @@
 ## Author: |cff00ff00ALA|r @ |cffff0000163UI|r
 ## Author-zhCN: |cff00ff00ALA|r @ |cffff0000网易有爱|r
 ## Author-zhTW: |cff00ff00ALA|r @ |cffff0000网易有爱|r
-## Version: 113r.210908
+## Version: 113r.210918
 
 alaGearMan.xml
 

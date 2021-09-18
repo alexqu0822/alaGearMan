@@ -1403,14 +1403,22 @@ function func.initUI()
 			if GetMacroInfo(MACRO_NAME_PREFIX .. 0) then
 				EditMacro(MACRO_NAME_PREFIX .. 0, MACRO_NAME_PREFIX .. 0, iconTable[106], "/run AGM_FUNC.takeoffAll()");
 			else
-				CreateMacro(MACRO_NAME_PREFIX .. 0, iconTable[106], "/run AGM_FUNC.takeoffAll()");
+				if GetMacroInfo(120) == nil then
+					CreateMacro(MACRO_NAME_PREFIX .. 0, iconTable[106], "/run AGM_FUNC.takeoffAll()");
+				else
+					print(L["UP_TO_120_MACROS"]);
+				end
 			end
 			for i = 1, #saved_sets do
 				local macro_name = MACRO_NAME_PREFIX .. i;
 				if GetMacroInfo(macro_name) then
 					EditMacro(macro_name, macro_name, iconTable[saved_sets[i].icon or 1], "/click " .. SECURE_QUICK_NAME_PREFIX .. (i + ofs));
 				else
-					CreateMacro(macro_name, iconTable[saved_sets[i].icon or 1], "/click " .. SECURE_QUICK_NAME_PREFIX .. (i + ofs));
+					if GetMacroInfo(120) == nil then
+						CreateMacro(macro_name, iconTable[saved_sets[i].icon or 1], "/click " .. SECURE_QUICK_NAME_PREFIX .. (i + ofs));
+					else
+						print(L["UP_TO_120_MACROS"]);
+					end
 				end
 			end
 			for i = 1, N do
