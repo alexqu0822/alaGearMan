@@ -1481,7 +1481,7 @@ function func.initUI()
 			end
 		end
 		ui.secureButtons = secureButtons;
-		ui.secure:Create(1);	--for take_off_all button
+		-- ui.secure:Create(1);	--for take_off_all button
 		ui.secure:Update();
 		-- ui.secure:Hide();
 		if not alaGearManSV.useBar then
