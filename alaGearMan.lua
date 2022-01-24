@@ -5,11 +5,13 @@
 	请勿加密、乱码、删除空格tab换行符、设置加载依赖
 --]]--
 ----------------------------------------------------------------------------------------------------
+local _G = _G;
+local __ala_meta__ = _G.__ala_meta__;
+local uireimp = __ala_meta__.uireimp;
+
 local ADDON, NS = ...;
 local L = NS.L;
-_G.__ala_meta__ = _G.__ala_meta__ or {  };
 
-local _G = _G;
 do
 	if NS.__fenv == nil then
 		NS.__fenv = setmetatable({  },
@@ -584,11 +586,11 @@ StaticPopupDialogs["alaGearMan_DelSet"] = {
 
 function func.gm_CreateButton(parent, index, buttonHeight)
 	-- print("CREATE", index)
-	local button = CreateFrame("BUTTON", nil, parent, "BackdropTemplate");
+	local button = CreateFrame("BUTTON", nil, parent);
 	button:SetHeight(buttonHeight);
-	button:SetBackdrop(buttonBackdrop);
-	button:SetBackdropColor(buttonBackdropColor[1], buttonBackdropColor[2], buttonBackdropColor[3], buttonBackdropColor[4]);
-	button:SetBackdropBorderColor(buttonBackdropBorderColor[1], buttonBackdropBorderColor[2], buttonBackdropBorderColor[3], buttonBackdropBorderColor[4]);
+	uireimp._SetBackdrop(button, buttonBackdrop);
+	uireimp._SetBackdropColor(button, buttonBackdropColor[1], buttonBackdropColor[2], buttonBackdropColor[3], buttonBackdropColor[4]);
+	uireimp._SetBackdropBorderColor(button, buttonBackdropBorderColor[1], buttonBackdropBorderColor[2], buttonBackdropBorderColor[3], buttonBackdropBorderColor[4]);
 	button:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar");
 	button:EnableMouse(true);
 	button:RegisterForDrag("LeftButton");
@@ -898,9 +900,9 @@ function func.initUI()
 	ui.open:SetScript("OnClick", func.open_onclick);
 
 	do	--win
-		ui.gearWin = CreateFrame("FRAME", nil, PaperDollFrame, "BackdropTemplate");
+		ui.gearWin = CreateFrame("FRAME", nil, PaperDollFrame);
 		ui.gearWin:SetFrameStrata("FULLSCREEN");
-		ui.gearWin:SetBackdrop({
+		uireimp._SetBackdrop(ui.gearWin, {
 			bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
 			edgeFile = "interface\\dialogframe\\ui-dialogbox-border",
 			tile = true,
@@ -908,7 +910,7 @@ function func.initUI()
 			edgeSize = 20,
 			insets = { left = 4, right = 4, top = 4, bottom = 4 }
 		});
-		ui.gearWin:SetBackdropColor(0.0, 0.0, 0.0, 0.9)
+		uireimp._SetBackdropColor(ui.gearWin, 0.0, 0.0, 0.0, 0.9);
 		ui.gearWin:SetWidth(win_SizeX);
 		-- ui.gearWin:SetPoint("TOPLEFT", PaperDollFrame, "TOPRIGHT");
 		-- ui.gearWin:SetPoint("BOTTOMLEFT", PaperDollFrame, "BOTTOMRIGHT");
@@ -1507,9 +1509,9 @@ function func.initUI()
 	end
 
 	do	--customize
-		ui.custom = CreateFrame("FRAME", nil, ui.gearWin, "BackdropTemplate");
+		ui.custom = CreateFrame("FRAME", nil, ui.gearWin);
 		ui.custom:SetFrameStrata("FULLSCREEN");
-		ui.custom:SetBackdrop({
+		uireimp._SetBackdrop(ui.custom, {
 			bgFile = "Interface/Tooltips/UI-Tooltip-Background",
 			edgeFile = "interface/dialogframe/ui-dialogbox-border",
 			tile = true,
@@ -1517,7 +1519,7 @@ function func.initUI()
 			edgeSize = 20,
 			insets = { left = 4, right = 4, top = 4, bottom = 4 }
 		});
-		ui.custom:SetBackdropColor(0.0, 0.0, 0.0, 0.9)
+		uireimp._SetBackdropColor(ui.custom, 0.0, 0.0, 0.0, 0.9);
 		ui.custom:SetSize(470, 460);
 		ui.custom:SetPoint("TOPLEFT", ui.gearWin, "TOPRIGHT", 15, 0);
 		ui.custom:Hide();
@@ -1563,14 +1565,14 @@ function func.initUI()
 			end
 		end
 
-		ui.customEdit = CreateFrame("EDITBOX", nil, ui.custom, "BackdropTemplate");
+		ui.customEdit = CreateFrame("EDITBOX", nil, ui.custom);
 		ui.customEdit:SetSize(220, 24);
 		ui.customEdit:SetFontObject(GameFontHighlightSmall);
 		ui.customEdit:SetAutoFocus(false);
 		ui.customEdit:SetJustifyH("LEFT");
 		ui.customEdit:Show();
 		ui.customEdit:EnableMouse(true);
-		-- ui.customEdit:SetBackdrop({
+		-- uireimp._SetBackdrop(, ui.customEdit{
 		-- 	bgFile = "Interface/Tooltips/UI-Tooltip-Background",
 		-- 	--edgeFile = "interface/dialogframe/ui-dialogbox-border",
 		-- 	tile = true,
