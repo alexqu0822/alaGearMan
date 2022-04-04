@@ -2010,6 +2010,9 @@ function func.equipItem2(item1, item2, slot1, slot2)
 	end
 end
 function func.equipItem(item, slot)
+	if item == nil then
+		return;
+	end
 	if GetInventoryItemLink('player', slot) == item then
 		return;
 	end
@@ -2430,6 +2433,7 @@ do	--	SLASH
 end
 
 do	--	extern style
+	local F = CreateFrame('FRAME');
 	local handler_table = {  };
 	local style = {  };
 	function handler_table.ElvUI()
@@ -2451,7 +2455,7 @@ do	--	extern style
 				style.drop = function(f) return S:HandleDropDownBox(f); end;
 				local index = 1;
 				while true do
-					if not ui.scroll:HandleButtonByRawIndex(index, func.StyleScroll) then
+					if not ui.scroll:HandleButtonByRawIndex(index, F.StyleScroll) then
 						break;
 					end
 					index = index + 1;
@@ -2478,14 +2482,20 @@ do	--	extern style
 			return handler(f);
 		end
 	end
-	function func.ADDON_LOADED(addon)
+	function F.ADDON_LOADED(addon)
 		local handler = handler_table[addon];
 		if handler then
 			handler();
 		end
 	end
 	function func.RegAddonListener()
-		_EventHandler:RegEvent("ADDON_LOADED");
+		F:RegisterEvent("ADDON_LOADED");
+		F:SetScript("OnEvent", function(self, event, ...)
+			local f = self[event];
+			if f ~= nil then
+				return f(...);
+			end
+		end);
 		for addon, handler in next, handler_table do
 			if IsAddOnLoaded(addon) then
 				handler();
