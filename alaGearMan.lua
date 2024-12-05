@@ -44,6 +44,17 @@ end
 	local _ = nil;
 	local GameTooltip = GameTooltip;
 	local ItemRefTooltip = ItemRefTooltip;
+	local GetMouseFocus = GetMouseFocus;
+	if GetMouseFocus ~= nil then
+	elseif GetMouseFoci ~= nil then
+		local GetMouseFoci = _G.GetMouseFoci;
+		GetMouseFocus = function()
+			return GetMouseFoci()[1];
+		end
+	else
+		GetMouseFocus = function() end
+	end
+
 ----------------------------------------------------------------------------------------------------
 local GUID = UnitGUID('player');
 local saved_sets = {  };
