@@ -1,4 +1,4 @@
-## Interface: 40400
+## Interface: 40401
 ## Title: alaGearMan
 ## Title-zhCN: ala一键换装
 ## Title-zhTW: ala一鍵換裝
