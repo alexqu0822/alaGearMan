@@ -5,6 +5,7 @@
 local _G = _G;
 local __ala_meta__ = _G.__ala_meta__;
 local uireimp = __ala_meta__.uireimp;
+local menulib = __ala_meta__.__menulib;
 local autostyle = __ala_meta__.autostyle;
 
 local ADDON, NS = ...;
@@ -1834,106 +1835,105 @@ function func.delete_onclick()
 	func.delete(var.gm_editing_set or var.gm_cur_set);
 end
 function func.setting(self, button)
-	local elements = { };
+	local menudef = {
+		handler = func.drop_handler,
+	};
 	if alaGearManSV.UseMacro then
-		tinsert(elements, {
-			para = { 'UseMacro', false, },
+		tinsert(menudef, {
+			param = { 'UseMacro', false, },
 			text = L["UseMacro_false"],
 		});
 	else
-		tinsert(elements, {
-			para = { 'UseMacro', true, },
+		tinsert(menudef, {
+			param = { 'UseMacro', true, },
 			text = L["UseMacro"],
 		});
 	end
 	if alaGearManSV.useBar then
-		tinsert(elements, {
-			para = { 'useBar', false, },
+		tinsert(menudef, {
+			param = { 'useBar', false, },
 			text = L["useBar_false"],
 		});
 	else
-		tinsert(elements, {
-			para = { 'useBar', true, },
+		tinsert(menudef, {
+			param = { 'useBar', true, },
 			text = L["useBar"],
 		});
 	end
 	if alaGearManSV.quickStyle ~= 'TC' then
-		tinsert(elements, {
-			para = { 'quickStyle', 'TC', },
+		tinsert(menudef, {
+			param = { 'quickStyle', 'TC', },
 			text = L["Style_TC"],
 		});
 	end
 	if alaGearManSV.quickStyle ~= 'T' then
-		tinsert(elements, {
-			para = { 'quickStyle', 'T', },
+		tinsert(menudef, {
+			param = { 'quickStyle', 'T', },
 			text = L["Style_T"],
 		});
 	end
 	if alaGearManSV.quickStyle ~= 'C' then
-		tinsert(elements, {
-			para = { 'quickStyle', 'C', },
+		tinsert(menudef, {
+			param = { 'quickStyle', 'C', },
 			text = L["Style_C"],
 		});
 	end
 	if alaGearManSV.takeoffAll_pos ~= 'LEFT' then
-		tinsert(elements, {
-			para = { 'takeoffAll_pos', 'LEFT', },
+		tinsert(menudef, {
+			param = { 'takeoffAll_pos', 'LEFT', },
 			text = L["Take-off-all On Left"],
 		});
 	end
 	if alaGearManSV.takeoffAll_pos ~= 'RIGHT' then
-		tinsert(elements, {
-			para = { 'takeoffAll_pos', 'RIGHT', },
+		tinsert(menudef, {
+			param = { 'takeoffAll_pos', 'RIGHT', },
 			text = L["Take-off-all On Right"],
 		});
 	end
 	if alaGearManSV.takeoffAll_include_neck_finger_and_trinket then
-		tinsert(elements, {
-			para = { 'takeoffAll_include_neck_finger_and_trinket', false, },
+		tinsert(menudef, {
+			param = { 'takeoffAll_include_neck_finger_and_trinket', false, },
 			text = L["takeoffAll_include_neck_finger_and_trinket_false"],
 		});
 	else
-		tinsert(elements, {
-			para = { 'takeoffAll_include_neck_finger_and_trinket', true, },
+		tinsert(menudef, {
+			param = { 'takeoffAll_include_neck_finger_and_trinket', true, },
 			text = L["takeoffAll_include_neck_finger_and_trinket"],
 		});
 	end
 	if alaGearManSV.show_outfit_in_tooltip then
-		tinsert(elements, {
-			para = { 'show_outfit_in_tooltip', false, },
+		tinsert(menudef, {
+			param = { 'show_outfit_in_tooltip', false, },
 			text = L["show_outfit_in_tooltip_false"],
 		});
 	else
-		tinsert(elements, {
-			para = { 'show_outfit_in_tooltip', true, },
+		tinsert(menudef, {
+			param = { 'show_outfit_in_tooltip', true, },
 			text = L["show_outfit_in_tooltip"],
 		});
 	end
 	if alaGearManSV.multi_lines then
-		tinsert(elements, {
-			para = { 'multi_lines', false, },
+		tinsert(menudef, {
+			param = { 'multi_lines', false, },
 			text = L["multi_lines_false"],
 		});
 	else
-		tinsert(elements, {
-			para = { 'multi_lines', true, },
+		tinsert(menudef, {
+			param = { 'multi_lines', true, },
 			text = L["multi_lines"],
 		});
 	end
-	tinsert(elements, {
+	tinsert(menudef, {
 		handler = function()
 			alaGearManSV.quickPos = { "TOP", 0, 0, };
 			alaGearManSV.quickPosChar[GUID] = nil;
 			ui.secure:ClearAllPoints();
 			ui.secure:SetPoint(unpack(alaGearManSV.quickPos));
 		end,
-		para ={  },
+		param ={  },
 		text = L["reset_pos"],
 	})
-	ALADROP(self, "BOTTOMRIGHT", {
-		handler = func.drop_handler,
-		elements = elements,
-	});
+	menulib.ShowMenu(self, "BOTTOMRIGHT", menudef);
 end
 function func.delete(set)
 	if saved_sets[set] then
@@ -2410,7 +2410,8 @@ end
 
 function func.update_drop_table()
 end
-function func.drop_handler(button, key, value)
+function func.drop_handler(button, _, param)
+	local key, value = param[1], param[2];
 	if key == 'UseMacro' then
 		if type(value) == 'boolean' then
 			alaGearManSV.UseMacro = value;
