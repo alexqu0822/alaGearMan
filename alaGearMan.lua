@@ -7,6 +7,7 @@ local __ala_meta__ = _G.__ala_meta__;
 local uireimp = __ala_meta__.uireimp;
 local menulib = __ala_meta__.__menulib;
 local autostyle = __ala_meta__.autostyle;
+local __scrolllib = __ala_meta__.__scrolllib;
 
 local ADDON, NS = ...;
 local L = NS.L;
@@ -1022,7 +1023,7 @@ function func.initUI()
 			autostyle:AddReskinObject(ui.gearWin);
 		end
 
-		ui.scroll = ALASCR(ui.gearWin, win_SizeX - 20, win_SizeY - 64, btn_SizeY, func.gm_CreateButton, func.gm_SetButton);
+		ui.scroll = __scrolllib.CreateScrollFrame(ui.gearWin, win_SizeX - 20, win_SizeY - 64, btn_SizeY, func.gm_CreateButton, func.gm_SetButton);
 		ui.scroll:SetPoint("BOTTOMLEFT", 10, 10);
 
 		ui.save = CreateFrame("BUTTON", nil, ui.gearWin, "UIPanelButtonTemplate");
