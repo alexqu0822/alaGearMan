@@ -1,4 +1,4 @@
-﻿--[[--
+--[[--
 	GearMan
 --]]--
 ----------------------------------------------------------------------------------------------------
@@ -42,6 +42,7 @@ end
 	local select = select;
 	local date, time = date, time;
 	local C_Timer = C_Timer;
+	local IsAddOnLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded;
 	----------------------------------------------------------------------------------------------------
 	local _ = nil;
 	local GameTooltip = GameTooltip;
@@ -924,6 +925,7 @@ end
 function func.initUI()
 	ui.open = CreateFrame("BUTTON", nil, PaperDollFrame);
 	ui.open:SetSize(32, 32);
+	ui.open:SetFrameLevel(9999);
 	if SUPPORT_ENGRAVING then
 		ui.open:SetPoint("TOPRIGHT", -70, -40);
 	elseif TOC >= 40000 then
