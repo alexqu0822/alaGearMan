@@ -1324,7 +1324,7 @@ function func.initUI()
 				-- button:SetAttribute("action", ACTION_START + index);
 				button:SetSize(alaGearManSV.quickSize, alaGearManSV.quickSize);
 				button:EnableMouse(true);
-				-- button:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+				button:RegisterForClicks("AnyUp", "AnyDown");
 				button:SetClampedToScreen(true);
 				button:RegisterForDrag("LeftButton");
 				button:Show();
