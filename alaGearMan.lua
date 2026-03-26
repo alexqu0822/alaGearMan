@@ -788,7 +788,7 @@ function func.gm_CreateButton(parent, index, buttonHeight)
 		local dataIndex = self:GetDataIndex();
 		if dataIndex > #saved_sets then
 			if var.gm_cur_set then
-				ui.scroll:CallButtonFuncByDataIndex(var.gm_cur_set, "Deselect");
+				ui.scroll:CallLineFuncByDataIndex(var.gm_cur_set, "Deselect");
 			end
 			var.gm_cur_set = nil;
 			var.gm_prev_clicked_set = nil;
@@ -808,7 +808,7 @@ function func.gm_CreateButton(parent, index, buttonHeight)
 			func.pdf_hide_mask();
 		else
 			if var.gm_cur_set then
-				ui.scroll:CallButtonFuncByDataIndex(var.gm_cur_set, "Deselect");
+				ui.scroll:CallLineFuncByDataIndex(var.gm_cur_set, "Deselect");
 			end
 			var.gm_cur_set = dataIndex;
 			self:Select();
@@ -1945,7 +1945,7 @@ end
 function func.delete(set)
 	if saved_sets[set] then
 		if var.gm_cur_set == set then
-			ui.scroll:CallButtonFuncByDataIndex(var.gm_cur_set, "Deselect");
+			ui.scroll:CallLineFuncByDataIndex(var.gm_cur_set, "Deselect");
 			var.gm_cur_set = nil;
 		end
 		tremove(saved_sets, set);
@@ -2658,7 +2658,7 @@ do	--	extern style
 				style.drop = function(f) return S:HandleDropDownBox(f); end;
 				local index = 1;
 				while true do
-					if not ui.scroll:HandleButtonByRawIndex(index, F.StyleScroll) then
+					if not ui.scroll:HandleLineByRawIndex(index, F.StyleScroll) then
 						break;
 					end
 					index = index + 1;
