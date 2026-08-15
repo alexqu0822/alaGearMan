@@ -2028,6 +2028,7 @@ function func.takeoffAll()
 end
 function func.equipItem2(item1, item2, slot1, slot2)
 	wipe(var.bagItemCache1);
+	wipe(var.bagItemCache2);
 	local ID1 = item1 and tonumber(select(3, strfind(item1, "item:(%d+)")));
 	local ID2 = item2 and tonumber(select(3, strfind(item2, "item:(%d+)")));
 	local bindType1 = ID1 and select(14,GetItemInfo(ID1));

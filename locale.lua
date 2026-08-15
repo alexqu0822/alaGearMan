@@ -244,7 +244,7 @@ elseif LOCALE == "koKR" then
 	L["Style_T"] = "아이콘 스타일";
 	L["Style_C"] = "숫자 스타일";
 	L["Take_Off_All"] = "장비 벗기";
-	L["Take_Off_All_ButtonText"] = "С";
+	L["Take_Off_All_ButtonText"] = "벗";
 	L["Take-off-all On Right"] = "장비 벗기 아이콘-\124cffff0000끝으로\124r";
 	L["Take-off-all On Left"] = "장비 벗기 아이콘-\124cffff0000앞으로\124r";
 	L["takeoffAll_include_neck_finger_and_trinket"] = "[장비 벗기] 선택시 내구도 0%인 장비도 <반지, 장신구, 망토 등>\124cffff0000같이 벗기\124r";
